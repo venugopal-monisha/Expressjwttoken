@@ -14,4 +14,4 @@ const studentSchema = new mongoose.Schema({
   // hashed
 });
 
-module.exports = mongoose.model('Student', studentSchema);
+module.exports = mongoose.model('register', registerSchema);
