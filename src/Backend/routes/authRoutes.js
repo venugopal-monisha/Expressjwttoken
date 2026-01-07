@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const sendEmail = require("../utils/sendEmail");
 
 const router = express.Router();
 
@@ -19,7 +20,22 @@ router.post("/signup", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-    await User.create({ name, email, password: hashedPassword });
+   const user = await User.create({
+  name,
+  email,
+  password: hashedPassword
+});
+await sendEmail({
+  to: user.email,
+  subject: "🎉 Registration Successful",
+  html: `
+    <h2>Welcome ${user.name}!</h2>
+    <p>Your registration was successful.</p>
+    <p>You can now log in.</p>
+  `
+});
+
+
 
     res.status(201).json({
       success: true,
