@@ -5,3 +5,4 @@ export default function ProtectedRoute({ children }) {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   return loggedInUser ? children : <Navigate to="/login" />;
 }
+
