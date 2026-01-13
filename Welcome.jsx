@@ -7,4 +7,5 @@ export default function Welcome() {
       <p>You have successfully logged in.</p>
     </div>
   );
+
 }
