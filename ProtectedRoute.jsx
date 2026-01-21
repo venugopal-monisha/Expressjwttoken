@@ -6,3 +6,4 @@ export default function ProtectedRoute({ children }) {
   return loggedInUser ? children : <Navigate to="/login" />;
 }
 
+
